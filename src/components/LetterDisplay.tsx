@@ -1,5 +1,6 @@
 interface LetterDisplayProps {
   content: string;
+  letterId?: string;
 }
 
 const GREETING_PREFIXES = [
@@ -116,7 +117,7 @@ function parseDateLine(line: string): string {
   return line.trim();
 }
 
-export function LetterDisplay({ content }: LetterDisplayProps) {
+export function LetterDisplay({ content, letterId }: LetterDisplayProps) {
   const allLines = content.split('\n');
 
   // First line = date (yyyyMMdd format)
@@ -148,7 +149,7 @@ export function LetterDisplay({ content }: LetterDisplayProps) {
   const { greeting, paragraphs, closing, ps } = parseLetterContent(contentForParsing);
 
   return (
-    <div className="letter-paper">
+    <div className="letter-paper" data-letter={letterId}>
       <div className="letter-date">{dateStr}</div>
 
       {greeting && <div className="letter-greeting">{greeting}</div>}

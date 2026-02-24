@@ -8,7 +8,7 @@ type PageState =
   | { status: 'landing' }
   | { status: 'missing-params' }
   | { status: 'loading' }
-  | { status: 'success'; content: string }
+  | { status: 'success'; content: string; letterId: string }
   | { status: 'error'; type: 'wrong-password' | 'not-found' | 'corrupted' | 'generic' };
 
 export function ProductionPage() {
@@ -48,7 +48,7 @@ export function ProductionPage() {
 
         try {
           const decrypted = await decrypt(encryptedText, pwd);
-          setState({ status: 'success', content: decrypted });
+          setState({ status: 'success', content: decrypted, letterId: id });
         } catch {
           setState({ status: 'error', type: 'wrong-password' });
         }
@@ -60,6 +60,14 @@ export function ProductionPage() {
     loadAndDecrypt(letterId, password);
   }, []);
 
+  // Set letter theme on body for page-level background styling
+  useEffect(() => {
+    if (state.status === 'success') {
+      document.body.dataset.letter = state.letterId;
+      return () => { delete document.body.dataset.letter; };
+    }
+  }, [state]);
+
   switch (state.status) {
     case 'landing':
       return <LandingMessage />;
@@ -68,7 +76,7 @@ export function ProductionPage() {
     case 'loading':
       return <div className="letter-loading">正在打开你的信...</div>;
     case 'success':
-      return <LetterDisplay content={state.content} />;
+      return <LetterDisplay content={state.content} letterId={state.letterId} />;
     case 'error':
       return <ErrorMessage type={state.type} />;
   }

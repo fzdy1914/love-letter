@@ -209,35 +209,222 @@ body {
   line-height: 2;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
+/* ===================== */
+/* Letter-specific themes */
+/* ===================== */
+
+/* fzdy — cool blue-tinted paper */
+body[data-letter="fzdy"] {
+  background: #eef2f8;
+}
+
+.letter-paper[data-letter="fzdy"] {
+  background: #edf1f8;
+  background-image:
+    radial-gradient(ellipse at center, transparent 0%, rgba(60, 80, 130, 0.06) 100%),
+    linear-gradient(180deg, rgba(240, 245, 255, 0.4) 0%, transparent 30%, transparent 70%, rgba(160, 180, 210, 0.15) 100%);
+  border-color: #c8d4e8;
+  box-shadow:
+    0 4px 20px rgba(60, 80, 130, 0.1),
+    0 1px 4px rgba(60, 80, 130, 0.06),
+    inset 0 0 40px rgba(60, 80, 130, 0.03);
+}
+
+.letter-paper[data-letter="fzdy"]::after {
+  box-shadow: 0 8px 16px rgba(60, 80, 130, 0.12);
+}
+
+.letter-paper[data-letter="fzdy"] .letter-date {
+  color: #7a9ab8;
+}
+
+.letter-paper[data-letter="fzdy"] .letter-greeting {
+  color: #3b5a8a;
+}
+
+.letter-paper[data-letter="fzdy"] .letter-body p {
+  color: #2a3550;
+}
+
+.letter-paper[data-letter="fzdy"] .letter-flourish {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #a8c0d8 20%,
+    #6a8cae 50%,
+    #a8c0d8 80%,
+    transparent 100%
+  );
+}
+
+.letter-paper[data-letter="fzdy"] .letter-closing {
+  color: #3b5a8a;
+}
+
+.letter-paper[data-letter="fzdy"] .letter-seal {
+  background: radial-gradient(circle at 35% 35%, #8baec8, #6a8cae 40%, #4a6a8a 100%);
+  box-shadow:
+    0 2px 8px rgba(60, 80, 130, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* pl — warm pink-tinted paper + different font */
+body[data-letter="pl"] {
+  background: #f9eff3;
+}
+
+.letter-paper[data-letter="pl"] {
+  background: #f8ecf1;
+  background-image:
+    radial-gradient(ellipse at center, transparent 0%, rgba(160, 60, 90, 0.05) 100%),
+    linear-gradient(180deg, rgba(255, 240, 245, 0.4) 0%, transparent 30%, transparent 70%, rgba(220, 170, 185, 0.15) 100%);
+  border-color: #e4c8d4;
+  box-shadow:
+    0 4px 20px rgba(140, 60, 80, 0.1),
+    0 1px 4px rgba(140, 60, 80, 0.06),
+    inset 0 0 40px rgba(140, 60, 80, 0.03);
+}
+
+.letter-paper[data-letter="pl"]::after {
+  box-shadow: 0 8px 16px rgba(140, 60, 80, 0.12);
+}
+
+.letter-paper[data-letter="pl"] .letter-date {
+  color: #c47a8a;
+}
+
+.letter-paper[data-letter="pl"] .letter-greeting {
+  color: #a03050;
+}
+
+.letter-paper[data-letter="pl"] .letter-body p {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 1.25rem;
+  color: #4a2030;
+}
+
+.letter-paper[data-letter="pl"] .letter-flourish {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #dca0b0 20%,
+    #c47a8a 50%,
+    #dca0b0 80%,
+    transparent 100%
+  );
+}
+
+.letter-paper[data-letter="pl"] .letter-closing {
+  color: #a03050;
+}
+
+.letter-paper[data-letter="pl"] .letter-ps {
+  font-family: 'Ma Shan Zheng', cursive;
+  color: #4a2030;
+}
+
+.letter-paper[data-letter="pl"] .letter-seal {
+  background: radial-gradient(circle at 35% 35%, #dc8a9a, #c47a8a 40%, #a05060 100%);
+  box-shadow:
+    0 2px 8px rgba(140, 60, 80, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive — tablets & large phones */
+@media (max-width: 768px) {
   body {
-    padding: 20px 12px;
+    align-items: flex-start;
+    padding: 28px 16px;
   }
 
   .letter-paper {
-    padding: 40px 28px;
-    transform: rotate(-0.5deg);
+    padding: 48px 40px;
+    transform: rotate(-0.8deg);
   }
 
   .letter-greeting {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    margin-bottom: 24px;
   }
 
   .letter-body p {
-    font-size: 1.15rem;
+    line-height: 2.0;
+  }
+
+  .letter-flourish {
+    margin: 24px auto;
   }
 
   .letter-closing {
-    font-size: 1.5rem;
+    margin-top: 24px;
+  }
+}
+
+/* Responsive — phones */
+@media (max-width: 480px) {
+  body {
+    align-items: flex-start;
+    padding: 16px 8px;
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
   }
 
+  .letter-paper {
+    padding: 32px 22px 80px;
+    transform: none;
+    border-radius: 4px;
+  }
+
+  .letter-date {
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+  }
+
+  .letter-greeting {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+  }
+
+  .letter-body p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    text-indent: 1.5em;
+    margin-bottom: 0.7em;
+  }
+
+  .letter-flourish {
+    margin: 20px auto;
+  }
+
+  .letter-closing {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    line-height: 1.6;
+  }
+
+  .letter-ps {
+    font-size: 0.9rem;
+    margin-top: 18px;
+  }
+
+  /* Seal: flow inline on mobile to avoid overlapping text */
   .letter-seal {
+    position: relative;
+    bottom: auto;
+    right: auto;
     width: 60px;
     height: 60px;
-    font-size: 1.4rem;
-    bottom: 20px;
-    right: 24px;
+    font-size: 1.3rem;
+    margin-top: 24px;
+    margin-left: auto;
+  }
+
+  .landing-container {
+    padding: 60px 16px;
   }
 
   .landing-container h1 {
@@ -246,5 +433,57 @@ body {
 
   .landing-container p {
     font-size: 1.1rem;
+  }
+
+  .error-container {
+    padding: 40px 16px;
+  }
+
+  .error-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .error-container p {
+    font-size: 1.1rem;
+  }
+
+  .letter-loading {
+    font-size: 1.2rem;
+    padding: 60px 16px;
+  }
+
+  /* pl theme: adjust for Ma Shan Zheng on mobile */
+  .letter-paper[data-letter="pl"] .letter-body p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Responsive — very small phones (SE, 5s, narrow) */
+@media (max-width: 360px) {
+  .letter-paper {
+    padding: 24px 16px 72px;
+  }
+
+  .letter-greeting {
+    font-size: 1.5rem;
+  }
+
+  .letter-body p {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .letter-closing {
+    font-size: 1.3rem;
+  }
+
+  .letter-seal {
+    width: 52px;
+    height: 52px;
+    font-size: 1.2rem;
+  }
+
+  .landing-container h1 {
+    font-size: 1.8rem;
   }
 }
