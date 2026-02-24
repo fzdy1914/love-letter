@@ -105,25 +105,47 @@ function parseLetterContent(content: string) {
   };
 }
 
-export function LetterDisplay({ content }: LetterDisplayProps) {
-  // Last non-empty line is the seal character(s), rest is letter content
-  const allLines = content.split('\n');
-  let sealChar = '爱';
-  let contentForParsing = content;
+function parseDateLine(line: string): string {
+  const match = line.trim().match(/^(\d{4})(\d{2})(\d{2})$/);
+  if (match) {
+    const year = parseInt(match[1], 10);
+    const month = parseInt(match[2], 10);
+    const day = parseInt(match[3], 10);
+    return `${year}年${month}月${day}日`;
+  }
+  return line.trim();
+}
 
-  for (let i = allLines.length - 1; i >= 0; i--) {
+export function LetterDisplay({ content }: LetterDisplayProps) {
+  const allLines = content.split('\n');
+
+  // First line = date (yyyyMMdd format)
+  let dateStr = '';
+  let startLine = 0;
+  for (let i = 0; i < allLines.length; i++) {
+    const trimmed = allLines[i].trim();
+    if (trimmed) {
+      dateStr = parseDateLine(trimmed);
+      startLine = i + 1;
+      break;
+    }
+    startLine = i + 1;
+  }
+
+  // Last non-empty line = seal character
+  let sealChar = '爱';
+  let endLine = allLines.length;
+  for (let i = allLines.length - 1; i >= startLine; i--) {
     const trimmed = allLines[i].trim();
     if (trimmed) {
       sealChar = trimmed;
-      contentForParsing = allLines.slice(0, i).join('\n');
+      endLine = i;
       break;
     }
   }
 
+  const contentForParsing = allLines.slice(startLine, endLine).join('\n');
   const { greeting, paragraphs, closing, ps } = parseLetterContent(contentForParsing);
-
-  const today = new Date();
-  const dateStr = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
 
   return (
     <div className="letter-paper">

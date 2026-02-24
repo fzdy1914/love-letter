@@ -74,12 +74,12 @@ https://<你的用户名>.github.io/love-letter/
 
 将以下格式的链接发给收信人：
 ```
-https://<你的用户名>.github.io/love-letter/?letter=<信件编号>&password=<密码>
+https://<你的用户名>.github.io/love-letter/?l=<信件编号>&p=<密码>
 ```
 
 例如：
 ```
-https://username.github.io/love-letter/?letter=my-letter&password=love2026
+https://username.github.io/love-letter/?l=my-letter&p=love2026
 ```
 
 ## 添加新情书
@@ -146,4 +146,4 @@ jobs:
 npm run dev
 ```
 
-- 情书页面：`http://localhost:5173/?letter=demo&password=demo123`
+- 情书页面：`http://localhost:5173/?l=demo&p=demo123`

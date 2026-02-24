@@ -16,8 +16,8 @@ export function ProductionPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const letterId = params.get('letter');
-    const password = params.get('password');
+    const letterId = params.get('l');
+    const password = params.get('p');
 
     if (!letterId && !password) {
       setState({ status: 'landing' });
